@@ -13,7 +13,8 @@ import {
   faBookmark,
   faCog,
   faUser,
-  faKiwiBird
+  faKiwiBird,
+  faStar
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -25,7 +26,8 @@ library.add(
   faBookmark,
   faCog,
   faUser,
-  faKiwiBird
+  faKiwiBird,
+  faStar
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

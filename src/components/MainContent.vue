@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-3/4 p-5">
+  <div class="h-full lg:w-3/4 w-full">
     <router-view></router-view>
   </div>
 </template>
