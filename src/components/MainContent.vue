@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full lg:w-3/4 w-full">
+  <div class="main-content h-auto w-full">
     <router-view></router-view>
   </div>
 </template>
@@ -9,3 +9,15 @@ export default {
   name: 'MainContent',
 }
 </script>
+
+<style>
+.main-content {
+  padding-left: 25%;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding-left: 20%;
+  }
+}
+</style>

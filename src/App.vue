@@ -36,8 +36,8 @@ body {
 #app {
   display: flex;
   flex-direction: row;
+  height: auto;
   min-height: 100%;
-  height: 100%;
   justify-content: flex-start;
 }
 </style>

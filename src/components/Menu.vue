@@ -1,6 +1,6 @@
 <template>
-  <div class="menu h-full lg:w-1/4 w-1/5 bg-gray-100 px-8 py-5 border-solid border-gray-400 border-r">
-    <h1 class="menu__logo">
+  <div class="menu min-h-full h-auto fixed lg:w-1/4 w-1/5 pr-2 bg-gray-100 border-solid border-gray-400 border-r">
+    <h1 class="text-3xl mb-5 px-2">
       <font-awesome-icon icon="kiwi-bird" class="text-twitter-blue" />
     </h1>
     <div v-for="(item, index) in menuItems" :key="index">
@@ -32,18 +32,14 @@ $light-blue: #e1f5fe;
 
 .menu {
   height: fit-content;
-  min-height: 100%;
-
-  &__logo {
-    @apply text-3xl mb-5 px-2;
-  }
+  padding-left: 8%;
+  padding-top: 15px;
 
   &__item {
-    @apply text-xl mb-3 text-gray-600 py-3 px-2;
+    margin-left: -10px;
 
     &:hover {
       background-color: $light-blue;
-      @apply rounded-full cursor-pointer;
     }
   }
 
@@ -60,5 +56,14 @@ $light-blue: #e1f5fe;
 
 .icon {
   width: 35px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    padding-left: 4%;
+    &__item {
+      margin-left: 0;
+    }
+  }
 }
 </style>
