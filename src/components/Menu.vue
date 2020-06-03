@@ -1,7 +1,7 @@
 <template>
   <nav class="menu min-h-full h-auto fixed lg:w-1/4 w-1/5 pr-2 bg-gray-100 border-solid border-gray-400 border-r">
     <h1 class="text-3xl mb-5 lg:pl-5 md:pl-8 pl-2">
-      <font-awesome-icon icon="kiwi-bird" class="text-twitter-blue" />
+      <img src="@/assets/images/icons/bird.svg" alt="logo" width="60">
     </h1>
     <div v-for="(item, index) in menuItems" :key="index">
       <MenuItem :item="item" />

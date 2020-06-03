@@ -13,7 +13,6 @@ import {
   faBookmark,
   faCog,
   faUser,
-  faKiwiBird,
   faStar,
   faImage
 } from '@fortawesome/free-solid-svg-icons'
@@ -27,7 +26,6 @@ library.add(
   faBookmark,
   faCog,
   faUser,
-  faKiwiBird,
   faStar,
   faImage
 )
