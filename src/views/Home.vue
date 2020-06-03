@@ -6,6 +6,7 @@
         <font-awesome-icon icon="star" />
       </div>
       <div class="min-h-full h-auto bg-gray-300">
+        <TweetForm />
       </div>
     </div>
     <div class="lg:w-2/5 lg:flex hidden border-solid border-gray-400 border-l">
@@ -13,3 +14,14 @@
     </div>
   </div>
 </template>
+
+<script>
+import TweetForm from '@/components/TweetForm'
+
+export default {
+  name: 'Home',
+  components: {
+    TweetForm
+  }
+}
+</script>

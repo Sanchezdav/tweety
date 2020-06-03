@@ -14,7 +14,8 @@ import {
   faCog,
   faUser,
   faKiwiBird,
-  faStar
+  faStar,
+  faImage
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -27,7 +28,8 @@ library.add(
   faCog,
   faUser,
   faKiwiBird,
-  faStar
+  faStar,
+  faImage
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

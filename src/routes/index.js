@@ -1,10 +1,10 @@
-import Home from '../components/Home'
-import Explore from '../components/Explore'
-import Notifications from '../components/Notifications'
-import Messages from '../components/Messages'
-import Bookmarks from '../components/Bookmarks'
-import Profile from '../components/Profile'
-import Settings from '../components/Settings'
+import Home from '@/views/Home'
+import Explore from '@/views/Explore'
+import Notifications from '@/views/Notifications'
+import Messages from '@/views/Messages'
+import Bookmarks from '@/views/Bookmarks'
+import Profile from '@/views/Profile'
+import Settings from '@/views/Settings'
 
 const routes = [
   { path: '/', component: Home },

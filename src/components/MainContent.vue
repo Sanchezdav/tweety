@@ -1,7 +1,7 @@
 <template>
-  <div class="main-content h-auto w-full">
+  <main class="main-content h-auto w-full">
     <router-view></router-view>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -16,6 +16,12 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .main-content {
+    padding-left: 25%;
+  }
+}
+
+@media (max-width: 768px) {
   .main-content {
     padding-left: 20%;
   }
