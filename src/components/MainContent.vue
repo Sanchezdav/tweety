@@ -1,12 +1,22 @@
 <template>
-  <main class="main-content h-auto w-full">
-    <router-view></router-view>
-  </main>
+  <Fragment>
+    <Menu />
+    <main class="main-content h-auto w-full">
+      <router-view></router-view>
+    </main>
+  </Fragment>
 </template>
 
 <script>
+import { Fragment } from 'vue-fragment'
+import Menu from './Menu'
+
 export default {
   name: 'MainContent',
+  components: {
+    Fragment,
+    Menu
+  }
 }
 </script>
 
