@@ -4,6 +4,25 @@
   </div>
 </template>
 
+<script>
+import VueCookies from 'vue-cookie'
+
+export default {
+  beforeCreate() {
+    const existingSession = VueCookies.get('session')
+
+    if (existingSession && existingSession.length) {
+      const session = JSON.parse(existingSession)
+      this.$store.commit('setUser', session.user)
+      this.$store.commit('setAuth', session.tokens)
+    } else {
+      this.$store.commit('setUser', null)
+      this.$store.commit('setAuth', null)
+    }
+  }
+}
+</script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
