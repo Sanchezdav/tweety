@@ -15,11 +15,11 @@ export const getters = {
 
 export const actions = {
   signUp({ commit }, { username, email, password }) {
+    // The Promise used for router redirect in Signup.vue
     return new Promise((resolve, reject) => {
       api
         .createUser(username, email, password)
         .then((response) => {
-          console.log(response)
           const authHeaders = pick(response.headers, [
             'access-token',
             'client',
@@ -47,6 +47,18 @@ export const actions = {
           reject(error.response.data.errors)
         })
     })
+  },
+  signOut({ commit }) {
+    // The Promise used for router redirect in UserMenu.vue
+    return new Promise(resolve => {
+      api.deleteSession().then(() => {
+        commit('setAuth', null)
+        commit('setUser', null)
+        VueCookies.delete('session')
+        sessionStorage.removeItem('vuex')
+        resolve()
+      });
+    });
   }
 }
 

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios'
 
 const API_URL = process.env.API_URL || 'http://localhost:3000/api'
@@ -14,6 +15,9 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export default {
   createUser(username, email, password) {
-    return axios.post('/auth', { username, email, password })
-  }
+    return Vue.prototype.$http.post('/auth', { username, email, password })
+  },
+  deleteSession() {
+    return Vue.prototype.$http.delete('/auth/sign_out', {})
+  },
 }
