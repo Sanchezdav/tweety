@@ -19,7 +19,8 @@ import {
   faCog,
   faUser,
   faStar,
-  faImage
+  faImage,
+  faAngleDown
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -32,7 +33,8 @@ library.add(
   faCog,
   faUser,
   faStar,
-  faImage
+  faImage,
+  faAngleDown
 )
 
 Vue.config.productionTip = false

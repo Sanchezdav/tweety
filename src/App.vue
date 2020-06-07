@@ -45,4 +45,11 @@ body {
   min-height: 100%;
   justify-content: flex-start;
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>

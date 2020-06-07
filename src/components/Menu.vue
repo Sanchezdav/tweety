@@ -6,21 +6,24 @@
     <div v-for="(item, index) in menuItems" :key="index">
       <MenuItem :item="item" />
     </div>
+    <UserMenu />
   </nav>
 </template>
 
 <script>
 import MenuItem from './MenuItem'
+import UserMenu from './UserMenu'
 import menuItems from '@/data/menuItems'
 
 export default {
   name: 'Menu',
   components: {
-    MenuItem
+    MenuItem,
+    UserMenu
   },
   data() {
     return {
-      menuItems: menuItems
+      menuItems: menuItems,
     }
   },
 }
@@ -44,6 +47,25 @@ export default {
     }
   }
 
+  &__user {
+    bottom: 30px;
+    left: 30px;
+    width: 250px;
+
+    &:hover {
+      background-color: $light-blue;
+    }
+
+    &__submenu {
+      left: 50px;
+      top: -110px;
+    }
+
+    &__triangle {
+      bottom: -16px;
+    }
+  }
+
   .router-link-exact-active {
     .menu__item {
       color: $twitter-blue;
@@ -58,6 +80,7 @@ export default {
 @media (max-width: 768px) {
   .menu {
     padding-left: 4%;
+
     &__item {
       margin-left: 0;
     }
@@ -67,6 +90,11 @@ export default {
 @media (max-width: 1024px) {
   .menu {
     padding-left: 2%;
+
+    &__user {
+      left: 10px;
+      width: 85%;
+    }
   }
 }
 
