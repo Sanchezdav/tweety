@@ -14,11 +14,11 @@ export const getters = {
 }
 
 export const actions = {
-  signUp({ commit }, { username, email, password }) {
+  signUp({ commit }, { username, email, password, password_confirmation }) {
     // The Promise used for router redirect in Signup.vue
     return new Promise((resolve, reject) => {
       api
-        .createUser(username, email, password)
+        .createUser(username, email, password, password_confirmation)
         .then((response) => {
           const authHeaders = pick(response.headers, [
             'access-token',
@@ -42,7 +42,41 @@ export const actions = {
           resolve()
         })
         .catch((error) => {
-          console.log(error)
+          commit('setAuth', null)
+          commit('setUser', null)
+          reject(error.response.data.errors)
+        })
+    })
+  },
+  signIn({ commit }, { email, password }) {
+    // The Promise used for router redirect in Signin.vue
+    return new Promise((resolve, reject) => {
+      api
+        .createSession(email, password)
+        .then((response) => {
+          const authHeaders = pick(response.headers, [
+            'access-token',
+            'client',
+            'expiry',
+            'uid',
+            'token-type',
+          ])
+          commit('setAuth', authHeaders)
+          commit('setUser', response.data.data)
+
+          const cookies = {
+            tokens: authHeaders,
+            user: response.data.data,
+          }
+
+          VueCookies.set('session', JSON.stringify(cookies), {
+            expires: '14D',
+          })
+
+          resolve()
+        })
+        .catch((error) => {
+          commit('setAuth', null)
           commit('setUser', null)
           reject(error.response.data.errors)
         })

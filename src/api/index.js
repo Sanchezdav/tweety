@@ -14,8 +14,16 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 // axios.defaults.withCredentials = true;
 
 export default {
-  createUser(username, email, password) {
-    return Vue.prototype.$http.post('/auth', { username, email, password })
+  createUser(username, email, password, password_confirmation) {
+    return Vue.prototype.$http.post('/auth', {
+      username,
+      email,
+      password,
+      password_confirmation,
+    })
+  },
+  createSession(email, password) {
+    return Vue.prototype.$http.post('/auth/sign_in', { email, password })
   },
   deleteSession() {
     return Vue.prototype.$http.delete('/auth/sign_out', {})
