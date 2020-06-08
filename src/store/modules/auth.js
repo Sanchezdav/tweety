@@ -20,25 +20,7 @@ export const actions = {
       api
         .createUser(username, email, password, password_confirmation)
         .then((response) => {
-          const authHeaders = pick(response.headers, [
-            'access-token',
-            'client',
-            'expiry',
-            'uid',
-            'token-type',
-          ])
-          commit('setAuth', authHeaders)
-          commit('setUser', response.data.data)
-
-          const cookies = {
-            tokens: authHeaders,
-            user: response.data.data,
-          }
-
-          VueCookies.set('session', JSON.stringify(cookies), {
-            expires: '14D',
-          })
-
+          createUserSession(response, commit)
           resolve()
         })
         .catch((error) => {
@@ -54,25 +36,7 @@ export const actions = {
       api
         .createSession(email, password)
         .then((response) => {
-          const authHeaders = pick(response.headers, [
-            'access-token',
-            'client',
-            'expiry',
-            'uid',
-            'token-type',
-          ])
-          commit('setAuth', authHeaders)
-          commit('setUser', response.data.data)
-
-          const cookies = {
-            tokens: authHeaders,
-            user: response.data.data,
-          }
-
-          VueCookies.set('session', JSON.stringify(cookies), {
-            expires: '14D',
-          })
-
+          createUserSession(response, commit)
           resolve()
         })
         .catch((error) => {
@@ -103,6 +67,27 @@ export const mutations = {
   setAuth(state, auth) {
     state.auth = auth
   }
+}
+
+function createUserSession(response, commit) {
+  const authHeaders = pick(response.headers, [
+    'access-token',
+    'client',
+    'expiry',
+    'uid',
+    'token-type',
+  ])
+  commit('setAuth', authHeaders)
+  commit('setUser', response.data.data)
+
+  const cookies = {
+    tokens: authHeaders,
+    user: response.data.data,
+  }
+
+  VueCookies.set('session', JSON.stringify(cookies), {
+    expires: '14D',
+  })
 }
 
 export default {
