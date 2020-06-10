@@ -17,8 +17,13 @@ import {
   faUser,
   faStar,
   faImage,
-  faAngleDown
-} from '@fortawesome/free-solid-svg-icons'
+  faAngleDown,
+  faComment,
+  faShare,
+  faHeart,
+  faEdit,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
@@ -31,8 +36,13 @@ library.add(
   faUser,
   faStar,
   faImage,
-  faAngleDown
-)
+  faAngleDown,
+  faComment,
+  faShare,
+  faHeart,
+  faEdit,
+  faTrash,
+);
 
 Vue.config.productionTip = false
 Vue.component('font-awesome-icon', FontAwesomeIcon)

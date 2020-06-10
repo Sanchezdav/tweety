@@ -29,7 +29,7 @@
           <input class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-white" v-model.trim="password_confirmation" id="password_confirmation" type="password" placeholder="**********************" required>
         </div>
         <div class="text-center flex flex-col">
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-5 rounded focus:outline-none focus:shadow-outline" type="submit">
+          <button :disabled='!isComplete' :class="disabled" class="w-full text-white font-bold py-2 px-5 rounded focus:outline-none focus:shadow-outline" type="submit">
             Sign Up
           </button>
           <router-link to="/sign_in" class="font-bold text-sm text-blue-500 hover:text-blue-800 mt-3">
@@ -59,6 +59,14 @@ export default {
     FullLogo,
     Errors
   },
+  computed: {
+    isComplete () {
+      return this.username && this.email && this.password && this.password_confirmation
+    },
+    disabled () {
+      return this.isComplete ? 'bg-blue-500 hover:bg-blue-400' : 'bg-blue-300 cursor-not-allowed'
+    },
+  },
   methods: {
     signUp() {
       this.$store
@@ -77,5 +85,5 @@ export default {
         })
     }
   }
-};
+}
 </script>

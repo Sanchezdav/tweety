@@ -15,10 +15,6 @@ axios.defaults.baseURL = API_URL
 // POST with JSON content type
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-// `withCredentials` indicates whether or not cross-site
-// Access-Control requests should be made using credentials.
-// axios.defaults.withCredentials = true;
-
 // It gives you easy global access to it instead use import
 Vue.prototype.$http = axios.create()
 
@@ -36,6 +32,12 @@ export default {
   },
   deleteSession() {
     return Vue.prototype.$http.delete('/auth/sign_out', {})
+  },
+  createPost({ content }) {
+    return Vue.prototype.$http.post('/v1/posts', { post: { content } })
+  },
+  getPosts() {
+    return Vue.prototype.$http.get('/v1/posts')
   },
 }
 
