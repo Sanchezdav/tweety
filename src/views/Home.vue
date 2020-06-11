@@ -15,7 +15,7 @@
         <div class="mt-3">
           <transition-group name="fade">
             <div v-for="post in posts" :key="post.id">
-              <Post :post="post" />
+              <Post :post="post" @removePost="deletePost" />
             </div>
           </transition-group>
         </div>
@@ -48,15 +48,24 @@ export default {
     }
   },
   created() {
-    api.getPosts().then(response => {
-      this.posts = response.data
-      this.isLoading = false
-    })
+    api
+      .getPosts()
+      .then(response => {
+        this.posts = response.data
+        this.isLoading = false
+      })
   },
   methods: {
     createPost(post) {
       this.posts.unshift(post)
-    }
+    },
+    deletePost(post) {
+      api
+        .deletePost(post)
+        .then(() => {
+          this.posts = this.posts.filter(item => item !== post)
+        })
+    },
   },
 }
 </script>

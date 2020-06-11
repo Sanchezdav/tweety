@@ -42,6 +42,9 @@ export default {
   updatePost(post) {
     return Vue.prototype.$http.put(`/v1/posts/${post.id}`, { post })
   },
+  deletePost({ id }) {
+    return Vue.prototype.$http.delete(`/v1/posts/${id}`);
+  },
 }
 
 Vue.prototype.$http.interceptors.response.use(

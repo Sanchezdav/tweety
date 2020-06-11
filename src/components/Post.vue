@@ -56,7 +56,7 @@
         <button v-if="userId == currentUserId && !editing" @click="editing = true" class="ml-2 text-blue-700">
           <font-awesome-icon icon="edit" />
         </button>
-        <button v-if="userId == currentUserId" class="ml-2 text-red-700">
+        <button v-if="userId == currentUserId" @click="deletePost" class="ml-2 text-red-700">
           <font-awesome-icon icon="trash" />
         </button>
       </div>
@@ -143,6 +143,23 @@ export default {
     cancelUpdate() {
       this.editing = false
       this.post.content = this.previousContent
+    },
+    deletePost() {
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You can\'t revert your action',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes delete it!',
+        cancelButtonText: 'No, keep it!',
+        showCloseButton: true,
+      }).then((result) => {
+        if(result.value) {
+          this.$emit('removePost', this.post)
+        } else {
+          this.$swal('Cancelled', 'Your tweet is still intact', 'info')
+        }
+      })
     },
   }
 }
