@@ -33,11 +33,14 @@ export default {
   deleteSession() {
     return Vue.prototype.$http.delete('/auth/sign_out', {})
   },
-  createPost({ content }) {
-    return Vue.prototype.$http.post('/v1/posts', { post: { content } })
+  createPost(post) {
+    return Vue.prototype.$http.post('/v1/posts', { post })
   },
   getPosts() {
     return Vue.prototype.$http.get('/v1/posts')
+  },
+  updatePost(post) {
+    return Vue.prototype.$http.put(`/v1/posts/${post.id}`, { post })
   },
 }
 

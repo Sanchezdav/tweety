@@ -69,6 +69,7 @@ export default {
     },
     reset() {
       this.post.content = ''
+      this.remainCharactersText = '150'
     },
     remaincharCount() {
       if (this.post.content.length > this.maxCharacters) {
@@ -80,7 +81,7 @@ export default {
         this.activeButton = true
       }
 
-    }
+    },
   },
 }
 </script>

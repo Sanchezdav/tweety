@@ -23,7 +23,7 @@ import {
   faHeart,
   faEdit,
   faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
@@ -42,7 +42,7 @@ library.add(
   faHeart,
   faEdit,
   faTrash,
-);
+)
 
 Vue.config.productionTip = false
 Vue.component('font-awesome-icon', FontAwesomeIcon)

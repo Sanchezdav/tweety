@@ -12,9 +12,31 @@
         </p>
       </div>
       <div class="mt-1">
-        <p>{{ post.content }}</p>
+        <p v-if="!editing">{{ post.content }}</p>
+        <div v-if="editing">
+          <form @submit.prevent="updatePost">
+            <textarea 
+              v-model="post.content" 
+              class="home__input mb-1 focus:outline-none bg-gray-200 border border-transparent rounded-lg py-2 px-4 block w-full appearance-none placeholder-gray-700 focus:placeholder-gray-400" 
+              rows="2" 
+              placeholder="What's happening..." 
+              @keyup='remaincharCount()'>
+            </textarea>
+            <p class="pl-5 text-gray-500 text-sm">
+              <span v-html="remainCharactersText"></span>
+            </p>
+            <div class="flex items-center px-5 mt-2">
+              <button @click="cancelUpdate" class="bg-red-500 hover:bg-red-400 ml-auto text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline">
+                Cancel
+              </button>
+              <button :class="disabled" class="ml-2 text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline" type="submit">
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="flex items-center pt-3">
+      <div class="flex items-center pt-3" v-if="!editing">
         <button class="link-icon mr-12 p-2 text-gray-500 hover:text-gray-600">
           <font-awesome-icon icon="comment" class="mr-1" />
           <span class="text-sm">10</span>
@@ -30,7 +52,7 @@
         <button class="link-icon mr-12 p-2 text-gray-500 hover:text-green-600">
           <font-awesome-icon icon="bookmark" class="mr-1" />
         </button>
-        <button v-if="userId == currentUserId" class="ml-2 text-blue-700">
+        <button v-if="userId == currentUserId && !editing" @click="editing = true" class="ml-2 text-blue-700">
           <font-awesome-icon icon="edit" />
         </button>
         <button v-if="userId == currentUserId" class="ml-2 text-red-700">
@@ -43,12 +65,17 @@
 
 <script>
 import moment from 'moment'
+import api from '@/api'
 
 export default {
   name: 'Post',
   data () {
     return {
       editing: false,
+      maxCharacters: 150,
+      remainCharactersText: '',
+      activeButton: true,
+      error: {},
     }
   },
   props: {
@@ -76,7 +103,41 @@ export default {
     currentUserId() {
       return this.$store.state.auth.user.id
     },
+    isComplete () {
+      return this.post.content && this.activeButton
+    },
+    disabled () {
+      return this.isComplete ? 'bg-blue-500 hover:bg-blue-400' : 'bg-blue-300 cursor-not-allowed'
+    },
   },
+  methods: {
+    remaincharCount() {
+      if (this.post.content.length > this.maxCharacters) {
+        this.remainCharactersText = `<span class="text-red-500">Exceeded ${this.maxCharacters} characters limit</span>`
+        this.activeButton = false
+      }else{
+        let remainCharacters = this.maxCharacters - this.post.content.length
+        this.remainCharactersText = `${remainCharacters}`
+        this.activeButton = true
+      }
+
+    },
+    updatePost() {
+      api
+        .updatePost(this.post)
+        .then(() => {
+          this.editing = false
+          this.error = {}
+        })
+        .catch((error) => {
+          console.log(error)
+          this.error = error
+        })
+    },
+    cancelUpdate() {
+      this.editing = false
+    },
+  }
 }
 </script>
 
