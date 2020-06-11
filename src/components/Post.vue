@@ -76,6 +76,7 @@ export default {
       remainCharactersText: '',
       activeButton: true,
       error: {},
+      previousContent: this.post.content
     }
   },
   props: {
@@ -136,6 +137,7 @@ export default {
     },
     cancelUpdate() {
       this.editing = false
+      this.post.content = this.previousContent
     },
   }
 }
