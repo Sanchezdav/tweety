@@ -6,7 +6,8 @@
     <div class="flex flex-col w-full">
       <div class="flex w-full items-center">
         <p class="font-bold mr-2">{{ name || emailTruncated }}</p>
-        <p class="text-gray-600">@{{ username }}</p>
+        <p class="text-gray-600 mr-2">@{{ username }}</p>
+        <p v-if="isEdited" class="text-gray-600 text-sm">(edited)</p>
         <p class="flex text-gray-600 ml-auto">
           <span>{{ timeAgo }}</span>
         </p>
@@ -110,6 +111,9 @@ export default {
     disabled () {
       return this.isComplete ? 'bg-blue-500 hover:bg-blue-400' : 'bg-blue-300 cursor-not-allowed'
     },
+    isEdited () {
+      return this.post.created_at != this.post.updated_at
+    },
   },
   methods: {
     remaincharCount() {
@@ -126,7 +130,8 @@ export default {
     updatePost() {
       api
         .updatePost(this.post)
-        .then(() => {
+        .then((response) => {
+          this.post.updated_at = response.data.updated_at
           this.editing = false
           this.error = {}
         })
