@@ -36,7 +36,7 @@
 import api from '@/api'
 
 export default {
-  name: 'TweetForm',
+  name: 'PostForm',
   data() {
     return {
       post:{

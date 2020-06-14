@@ -1,5 +1,5 @@
 <template>
-  <article class="w-full flex bg-white p-3 border-b border-gray-400 box-border">
+  <article :id="`post-${post.id}`" class="w-full flex bg-white p-3 border-b border-gray-400 box-border">
     <figure class="mr-2">
       <img src="../assets/images/avatar.png" class="rounded-full" width="50" alt="avatar">
     </figure>
@@ -13,7 +13,11 @@
         </p>
       </div>
       <div class="mt-1">
-        <p v-if="!editing">{{ post.content }}</p>
+        <router-link v-if="!editing" :to="{ name: 'post', params: { id: post.id } }">
+          <p class="py-1">
+            {{ post.content }}
+          </p>
+        </router-link>
         <div v-if="editing">
           <form @submit.prevent="updatePost">
             <textarea 
@@ -88,16 +92,16 @@ export default {
   },
   computed: {
     userId() {
-      return this.post.user.id
+      return this.post.user?.id
     },
     name() {
-      return this.post.user.name
+      return this.post.user?.name
     },
     username() {
-      return this.post.user.username
+      return this.post.user?.username
     },
     emailTruncated() {
-      return this.post.user.email.split("@")[0].trim()
+      return this.post.user?.email.split("@")[0].trim()
     },
     timeAgo() {
       return moment(this.post.created_at).fromNow()

@@ -25,6 +25,7 @@ import {
   faHeart,
   faEdit,
   faTrash,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -44,6 +45,7 @@ library.add(
   faHeart,
   faEdit,
   faTrash,
+  faArrowLeft,
 )
 
 Vue.config.productionTip = false

@@ -11,6 +11,7 @@ import Messages from '@/views/Messages'
 import Bookmarks from '@/views/Bookmarks'
 import Profile from '@/views/Profile'
 import Settings from '@/views/Settings'
+import PostView from '@/views/Post'
 import Signin from '@/views/Signin'
 import Signup from '@/views/Signup'
 import NotFound from '@/views/NotFound'
@@ -30,6 +31,7 @@ const routes = [
       { path: '/bookmarks', component: Bookmarks },
       { path: '/profile', component: Profile },
       { path: '/settings', component: Settings },
+      { path: '/post/:id', component: PostView, name: 'post' },
     ],
   },
   {

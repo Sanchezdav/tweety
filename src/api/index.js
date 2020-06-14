@@ -39,11 +39,14 @@ export default {
   getPosts() {
     return Vue.prototype.$http.get('/v1/posts')
   },
+  getPost(postId) {
+    return Vue.prototype.$http.get(`/v1/posts/${postId}`)
+  },
   updatePost(post) {
     return Vue.prototype.$http.put(`/v1/posts/${post.id}`, { post })
   },
   deletePost({ id }) {
-    return Vue.prototype.$http.delete(`/v1/posts/${id}`);
+    return Vue.prototype.$http.delete(`/v1/posts/${id}`)
   },
 }
 

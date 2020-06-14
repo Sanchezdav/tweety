@@ -6,7 +6,7 @@
         <font-awesome-icon icon="star" />
       </div>
       <div class="min-h-full h-auto bg-gray-300">
-        <TweetForm v-on:addPost="createPost" />
+        <PostForm v-on:addPost="createPost" />
         <div v-show="isLoading" class="mt-3">
           <EmptyPost />
           <EmptyPost />
@@ -21,24 +21,24 @@
         </div>
       </div>
     </div>
-    <div class="lg:w-2/5 lg:flex hidden border-solid border-gray-400 border-l">
-      <h1 class="text-xl">Right bar</h1>
-    </div>
+    <RightSide />
   </div>
 </template>
 
 <script>
 import api from '@/api'
-import TweetForm from '@/components/TweetForm'
+import PostForm from '@/components/PostForm'
 import Post from '@/components/Post'
 import EmptyPost from '@/components/EmptyPost'
+import RightSide from '@/components/RightSide'
 
 export default {
   name: 'Home',
   components: {
-    TweetForm,
+    PostForm,
     Post,
-    EmptyPost
+    EmptyPost,
+    RightSide
   },
   data() {
     return {
