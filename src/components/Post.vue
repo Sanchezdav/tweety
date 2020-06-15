@@ -4,11 +4,11 @@
       <img src="../assets/images/avatar.png" class="rounded-full" width="50" alt="avatar">
     </figure>
     <div class="flex flex-col w-full">
-      <div class="flex w-full items-center">
+      <div class="flex md:flex-row flex-col w-full md:items-center items-start">
         <p class="font-bold mr-2">{{ name || emailTruncated }}</p>
         <p class="text-gray-600 mr-2">@{{ username }}</p>
-        <p v-if="isEdited" class="text-gray-600 text-sm">(edited)</p>
-        <p class="flex text-gray-600 ml-auto">
+        <p v-show="isEdited" class="text-gray-600 text-sm">(edited)</p>
+        <p class="hidden md:flex text-gray-600 ml-auto">
           <span>{{ timeAgo }}</span>
         </p>
       </div>
@@ -42,25 +42,25 @@
         </div>
       </div>
       <div class="flex items-center pt-3" v-if="!editing">
-        <button class="link-icon mr-12 p-2 text-gray-500 hover:text-gray-600">
+        <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-gray-600">
           <font-awesome-icon icon="comment" class="mr-1" />
           <span class="text-sm">10</span>
         </button>
-        <button class="link-icon mr-12 p-2 text-gray-500 hover:text-blue-600">
+        <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-blue-600">
           <font-awesome-icon icon="share" class="mr-1" />
           <span class="text-sm">10</span>
         </button>
-        <button class="link-icon mr-12 p-2 text-gray-500 hover:text-red-600">
+        <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-red-600">
           <font-awesome-icon icon="heart" class="mr-1" />
           <span class="text-sm">10</span>
         </button>
-        <button class="link-icon mr-12 p-2 text-gray-500 hover:text-green-600">
+        <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-green-600">
           <font-awesome-icon icon="bookmark" class="mr-1" />
         </button>
-        <button v-if="userId == currentUserId && !editing" @click="editing = true" class="ml-2 text-blue-700">
+        <button v-if="userId == currentUserId && !editing" @click="editing = true" class="ml-2 text-blue-700 md:flex hidden">
           <font-awesome-icon icon="edit" />
         </button>
-        <button v-if="userId == currentUserId" @click="deletePost" class="ml-2 text-red-700">
+        <button v-if="userId == currentUserId" @click="deletePost" class="ml-2 text-red-700 md:flex hidden">
           <font-awesome-icon icon="trash" />
         </button>
       </div>

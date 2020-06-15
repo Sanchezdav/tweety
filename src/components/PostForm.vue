@@ -20,7 +20,8 @@
           </p>
           <div class="flex items-center px-5 mt-2">
             <button class="tweet-form__button-icon">
-              <font-awesome-icon icon="image" class="text-gray-500 text-2xl" />
+              <font-awesome-icon icon="image" class="text-gray-500 text-2xl mr-5" />
+              <font-awesome-icon icon="smile" class="text-gray-500 text-2xl" />
             </button>
             <button :class="disabled" class="ml-auto text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline" type="submit">
               Tweet

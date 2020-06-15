@@ -27,13 +27,13 @@ export default {
 
 @media (max-width: 1024px) {
   .main-content {
-    padding-left: 25%;
+    padding-left: 8%;
   }
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding-left: 20%;
+    padding-left: 69px;
   }
 }
 </style>

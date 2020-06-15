@@ -2,7 +2,7 @@
   <div class="home flex h-auto min-h-full">
     <div class="lg:w-3/5 w-full">
       <div class="border-solid border-gray-400 border-b p-3 flex items-center">
-        <router-link :to="{ name: 'home' }">
+        <router-link :to="{ name: 'home' }" class="hover:text-blue-500">
           <font-awesome-icon icon="arrow-left" />
         </router-link>
         <h1 class="text-xl font-bold ml-10">Tweety</h1>
@@ -11,7 +11,7 @@
         <div v-show="isLoading" class="mt-3">
           <EmptyPost />
         </div>
-        <Post :post="post" :key="post.id" />
+        <Post :post="post" :key="post.id" @removePost="deletePost" />
       </div>
     </div>
     <RightSide />
@@ -45,6 +45,15 @@ export default {
         this.post = response.data
         this.isLoading = false
       })
+  },
+  methods: {
+    deletePost(post) {
+      api
+        .deletePost(post)
+        .then(() => {
+          this.$router.push({ name: 'home' })
+        })
+    },
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <aside class="lg:w-2/5 lg:flex hidden border-solid border-gray-400 border-l">
+  <aside class="lg:w-2/5 lg:flex md:flex hidden border-solid border-gray-400 border-l">
     <div class="w-full py-3 px-8">
       <SearchBar />
     </div>

@@ -1,6 +1,6 @@
 <template>
-  <nav class="menu min-h-full h-auto fixed lg:w-1/4 w-1/5 pr-2 bg-gray-100 border-solid border-gray-400 border-r">
-    <h1 class="text-3xl mb-5 lg:pl-5 md:pl-8 pl-2">
+  <nav class="menu min-h-full h-auto fixed lg:w-1/4 md:w-1/12 lg:pl-10 bg-gray-100 border-solid border-gray-400 border-r">
+    <h1 class="text-3xl mb-5 lg:pl-2 md:pl-2 pl-2">
       <img src="@/assets/images/icons/bird.svg" alt="logo" width="60">
     </h1>
     <div v-for="(item, index) in menuItems" :key="index">
@@ -32,7 +32,6 @@ export default {
 <style lang="scss">
 .menu {
   height: fit-content;
-  padding-left: 8%;
   padding-top: 15px;
 
   &__item {
@@ -92,7 +91,7 @@ export default {
     padding-left: 2%;
 
     &__user {
-      left: 10px;
+      left: 5px;
       width: 85%;
     }
   }
@@ -100,7 +99,7 @@ export default {
 
 @media (max-width: 1280px) {
   .menu {
-    padding-left: 2%;
+    padding-left: 0;
   }
 }
 </style>
