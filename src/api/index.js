@@ -20,35 +20,38 @@ Vue.prototype.$http = axios.create()
 
 export default {
   createUser(username, email, password, password_confirmation) {
-    return Vue.prototype.$http.post('/auth', {
+    return Vue.prototype.$http.post("/auth", {
       username,
       email,
       password,
       password_confirmation,
-    })
+    });
   },
   createSession(email, password) {
-    return Vue.prototype.$http.post('/auth/sign_in', { email, password })
+    return Vue.prototype.$http.post("/auth/sign_in", { email, password });
   },
   deleteSession() {
-    return Vue.prototype.$http.delete('/auth/sign_out', {})
+    return Vue.prototype.$http.delete("/auth/sign_out", {});
   },
   createPost(post) {
-    return Vue.prototype.$http.post('/v1/posts', { post })
+    return Vue.prototype.$http.post("/v1/posts", { post });
   },
   getPosts() {
-    return Vue.prototype.$http.get('/v1/posts')
+    return Vue.prototype.$http.get("/v1/posts");
   },
   getPost(postId) {
-    return Vue.prototype.$http.get(`/v1/posts/${postId}`)
+    return Vue.prototype.$http.get(`/v1/posts/${postId}`);
   },
   updatePost(post) {
-    return Vue.prototype.$http.put(`/v1/posts/${post.id}`, { post })
+    return Vue.prototype.$http.put(`/v1/posts/${post.id}`, { post });
   },
   deletePost({ id }) {
-    return Vue.prototype.$http.delete(`/v1/posts/${id}`)
+    return Vue.prototype.$http.delete(`/v1/posts/${id}`);
   },
-}
+  getComments(postId) {
+    return Vue.prototype.$http.get(`/v1/posts/${postId}/comments`);
+  },
+};
 
 Vue.prototype.$http.interceptors.response.use(
   (response) => {

@@ -27,6 +27,9 @@ import {
   faTrash,
   faArrowLeft,
   faSmile,
+  faClock,
+  faThumbsUp,
+  faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -48,6 +51,9 @@ library.add(
   faTrash,
   faArrowLeft,
   faSmile,
+  faClock,
+  faThumbsUp,
+  faThumbsDown,
 )
 
 Vue.config.productionTip = false
