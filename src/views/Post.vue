@@ -115,6 +115,7 @@ export default {
     createComment(comment) {
       this.showingModal = false
       this.comments.unshift(comment)
+      this.post.comments_count += 1
     },
   },
 }

@@ -44,7 +44,7 @@
       <div class="flex items-center pt-3" v-if="!editing">
         <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-gray-600">
           <font-awesome-icon icon="comment" class="mr-1" />
-          <span class="text-sm">10</span>
+          <span class="text-sm">{{ post.comments_count }}</span>
         </button>
         <button class="link-icon md:mr-12 mr-6 p-2 text-gray-500 hover:text-blue-600">
           <font-awesome-icon icon="share" class="mr-1" />
