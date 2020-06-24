@@ -26,12 +26,22 @@
           </div>
         </div>
         <FormModal :showing="showingModal" @close="showingModal = false">
-          <h1 class="text-xl">Form modal</h1>
+          <PostForm 
+            button-text="Comment" 
+            input-placeholder="What's your comment..." 
+            is-comment 
+            v-on:addComment="createComment" />
         </FormModal>
         <div v-show="isLoadingComments" class="mt-3 p-8 text-center">
           <h3 class="text-xl">Loading comments...</h3>
         </div>
-        <div v-show="!isLoadingComments" class="mt-3">
+        <div v-show="!isLoadingComments && comments.length == 0" class="mt-3 pt-12 text-center">
+          <font-awesome-icon icon="comment" class="text-2xl text-gray-600" />
+          <h3 class="text-xl text-gray-600">
+            Be the first to comment!
+          </h3>
+        </div>
+        <div v-show="!isLoadingComments && comments.length > 0" class="comments mt-3 pl-8">
           <transition-group name="fade">
             <div v-for="comment in comments" :key="comment.id">
               <Comment :comment="comment" />
@@ -52,6 +62,7 @@ import RightSide from '@/components/RightSide'
 import EmptyPost from '@/components/EmptyPost'
 import Comment from '@/components/Comment'
 import FormModal from '@/components/FormModal'
+import PostForm from '@/components/PostForm'
 
 export default {
   name: 'PostView',
@@ -60,7 +71,8 @@ export default {
     RightSide,
     EmptyPost,
     Comment,
-    FormModal
+    FormModal,
+    PostForm
   },
   data () {
     return {
@@ -100,6 +112,29 @@ export default {
           this.$router.push({ name: 'home' })
         })
     },
+    createComment(comment) {
+      this.showingModal = false
+      this.comments.unshift(comment)
+    },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.comments {
+  position: relative;
+
+  &::after {
+    border-left: solid 5px $twitter-blue;
+    border-bottom: solid 5px $twitter-blue;
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 13px;
+    height: 80%;
+    width: 20px;
+    z-index: 2;
+  }
+
+}
+</style>

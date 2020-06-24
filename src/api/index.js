@@ -51,6 +51,9 @@ export default {
   getComments(postId) {
     return Vue.prototype.$http.get(`/v1/posts/${postId}/comments`);
   },
+  createComment(postId, comment) {
+    return Vue.prototype.$http.post(`/v1/posts/${postId}/comments`, { comment });
+  },
 };
 
 Vue.prototype.$http.interceptors.response.use(

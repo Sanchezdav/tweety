@@ -1,5 +1,5 @@
 <template>
-  <article :id="`comment-${comment.id}`" class="w-full flex bg-white p-3 border-b border-gray-400 box-border">
+  <article :id="`comment-${comment.id}`" class="comment w-full flex bg-white p-3 border-b border-l border-gray-400 box-border">
     <figure class="mr-2">
       <img src="../assets/images/avatar.png" class="rounded-full" width="50" alt="avatar">
     </figure>
@@ -13,7 +13,7 @@
       </div>
       <div class="mt-1">
         <p class="py-1">
-          {{ comment.comment }}
+          {{ comment.content }}
         </p>
       </div>
       <div class="flex items-center pt-3">

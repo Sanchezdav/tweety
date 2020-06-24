@@ -12,7 +12,7 @@
             v-model="post.content" 
             class="home__input mb-2 focus:outline-none border border-transparent rounded-lg py-2 px-4 block w-full appearance-none placeholder-gray-700 focus:placeholder-gray-400" 
             rows="2" 
-            placeholder="What's happening..." 
+            :placeholder="inputPlaceholder" 
             @keyup='remaincharCount()'>
           </textarea>
           <p class="pl-5 text-gray-500 text-sm">
@@ -24,7 +24,7 @@
               <font-awesome-icon icon="smile" class="text-gray-500 text-2xl" />
             </button>
             <button :class="disabled" class="ml-auto text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline" type="submit">
-              Tweet
+             {{ buttonText }} 
             </button>
           </div>
         </form>
@@ -38,11 +38,29 @@ import api from '@/api'
 
 export default {
   name: 'PostForm',
+  props: {
+    isComment: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    buttonText: {
+      type: String,
+      required: false,
+      default: 'Tweet'
+    },
+    inputPlaceholder: {
+      type: String,
+      required: false,
+      default: "What's happening..."
+    },
+  },
   data() {
     return {
       post:{
         content: ''
       },
+      postId: this.$route.params.id,
       maxCharacters: 150,
       remainCharactersText: '150',
       activeButton: true
@@ -58,15 +76,27 @@ export default {
   },
   methods: {
     createPost() {
-      api
-        .createPost(this.post)
-        .then((response) => {
-          this.$emit('addPost', response.data)
-          this.reset()
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      if (this.isComment) {
+        api
+          .createComment(this.postId, this.post)
+          .then((response) => {
+            this.$emit('addComment', response.data)
+            this.reset()
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      } else {
+        api
+          .createPost(this.post)
+          .then((response) => {
+            this.$emit('addPost', response.data)
+            this.reset()
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
     },
     reset() {
       this.post.content = ''
