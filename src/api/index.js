@@ -54,6 +54,12 @@ export default {
   createComment(postId, comment) {
     return Vue.prototype.$http.post(`/v1/posts/${postId}/comments`, { comment });
   },
+  likeComment(postId, commentId) {
+    return Vue.prototype.$http.post(`/v1/posts/${postId}/comments/${commentId}/like`);
+  },
+  dislikeComment(postId, commentId) {
+    return Vue.prototype.$http.post(`/v1/posts/${postId}/comments/${commentId}/dislike`);
+  },
 };
 
 Vue.prototype.$http.interceptors.response.use(
