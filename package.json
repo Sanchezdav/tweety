@@ -15,7 +15,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "http-status": "^1.4.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.26.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
